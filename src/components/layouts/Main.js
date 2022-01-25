@@ -217,7 +217,7 @@ export default function Main() {
               </div>
               <div className="mt-4">
                 <h1 className="sr-only">Recent questions</h1>
-                <ul role="list" className="space-y-4">
+                <ul className="space-y-4">
                   {questions.map((question) => (
                     <li
                       key={question.id}
