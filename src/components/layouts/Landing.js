@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
+import { Link } from "react-router-dom";
 import {
   BookOpenIcon,
   ChevronDoubleDownIcon,
@@ -224,12 +225,12 @@ export default function Landing() {
                     <form action="#" className="sm:max-w-xl sm:mx-auto lg:mx-0">
                       <div className="sm:flex">
                         <div className="mt-3 sm:mt-0">
-                          <button
-                            type="submit"
+                          <Link
+                            to="/main"
                             className="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                           >
                             Get started
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </form>

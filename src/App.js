@@ -7,6 +7,7 @@ import Landing from "./components/layouts/Landing";
 import Main from "./components/layouts/Main";
 import ErrorMessage from "./components/layouts/ErrorMessage";
 import WithPrivateRoute from "./utils/WithPrivateRoute";
+import QuestionCreate from "./components/question/QuestionCreate";
 
 function App() {
   return (
@@ -23,6 +24,16 @@ function App() {
           element={
             <WithPrivateRoute>
               <Main />
+            </WithPrivateRoute>
+          }
+        />
+
+        <Route
+          exact
+          path="/ask/question"
+          element={
+            <WithPrivateRoute>
+              <QuestionCreate />
             </WithPrivateRoute>
           }
         />

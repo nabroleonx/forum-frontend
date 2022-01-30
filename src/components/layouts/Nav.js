@@ -179,6 +179,14 @@ export default function Nav() {
                       </Link>
                     </>
                   )}
+                  {token && (
+                    <Link
+                      to="/ask/question"
+                      className="ml-6 inline-flex items-center px-5 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500"
+                    >
+                      Ask Question
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -261,6 +269,14 @@ export default function Nav() {
                     Register
                   </Link>
                 </div>
+              )}
+              {token && (
+                <Link
+                  to="/ask/question"
+                  className="ml-6 inline-flex items-center px-5 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500"
+                >
+                  Ask Question
+                </Link>
               )}
             </Popover.Panel>
           </>
