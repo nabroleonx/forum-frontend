@@ -1,38 +1,55 @@
 import axios from "axios";
-import jwt_decode from "jwt-decode";
-import dayjs from "dayjs";
 
 const baseURL = "http://localhost:8000/api/";
 
-let forum = localStorage.getItem("forum")
-  ? JSON.parse(localStorage.getItem("forum"))
-  : null;
-
 const axiosInstance = axios.create({
-  baseURL,
-  headers: { Authorization: `Bearer ${forum?.access}` },
+  baseURL: baseURL,
+  timeout: 5000,
 });
 
-axiosInstance.interceptors.request.use(async (req) => {
-  if (!forum) {
-    forum = localStorage.getItem("forum")
-      ? JSON.parse(localStorage.getItem("forum"))
-      : null;
-    req.headers.Authorization = `Bearer ${forum?.access}`;
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (
+      error.response.status === 401 &&
+      originalRequest.url === "http://localhost:8000/api/user/token/refresh/"
+    ) {
+      window.location.href = "/user/login/";
+      return Promise.reject(error);
+    }
+
+    if (
+      error.response.data.code === "token_not_valid" &&
+      error.response.status === 401 &&
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+      const refreshToken = JSON.parse(localStorage.getItem("forum")).refresh;
+
+      return axiosInstance
+        .post("/user/token/refresh/", {
+          refresh: refreshToken,
+        })
+        .then((response) => {
+          localStorage.setItem("forum", JSON.stringify(response.data));
+
+          axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${
+            JSON.parse(localStorage.getItem("forum")).access
+          }`;
+
+          originalRequest.headers["Authorization"] = `Bearer ${
+            JSON.parse(localStorage.getItem("forum")).access
+          }`;
+
+          return axiosInstance(originalRequest);
+        });
+    }
+    return Promise.reject(error);
   }
-
-  const user = jwt_decode(forum.access);
-  const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
-
-  if (!isExpired) return req;
-
-  const response = await axios.post(`${baseURL}user/token/refresh/`, {
-    refresh: forum.refresh,
-  });
-
-  localStorage.setItem("forum", JSON.stringify(response.data));
-  req.headers.Authorization = `Bearer ${response.data.access}`;
-  return req;
-});
+);
 
 export default axiosInstance;
