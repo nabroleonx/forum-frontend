@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import parse from "html-react-parser";
+import React from "react";
 
-import Editor from "ckeditor5-custom-build/build/ckeditor";
+import Ckeditor from "../layouts/Ckeditor";
 
 export default function QC() {
-  const [questionBody, setQuestionBody] = useState("");
   return (
     <div className=" px-4 sm:px-6 lg:px-20 xl:px-24">
       <div className="space-y-8 divide-y divide-gray-200">
@@ -45,24 +42,8 @@ export default function QC() {
                 Include all the information someone would need to answer your
                 question
               </span>
-              <CKEditor
-                editor={Editor}
-                // config={editorConfiguration}
-                data={questionBody}
-                onChange={(event, editor) => {
-                  const data = editor.getData();
-                  setQuestionBody(data);
-                }}
-              />
+              <Ckeditor />
             </div>
-
-            <div className="col-span-1 sm:col-start-2 sm:col-span-10 border border-gray-200 rounded-md">
-              <div className="bg-gray-200 px-3 py-2">Preview</div>
-              <div className="px-4 py-3">
-                <p>{parse(questionBody)}</p>
-              </div>
-            </div>
-
             <div className="col-span-1 sm:col-start-2 sm:col-span-10">
               <label
                 htmlFor="tags"
