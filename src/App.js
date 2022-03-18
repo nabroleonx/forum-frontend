@@ -8,6 +8,7 @@ import Main from "./components/layouts/Main";
 import ErrorMessage from "./components/layouts/ErrorMessage";
 import WithPrivateRoute from "./utils/WithPrivateRoute";
 import QuestionCreate from "./components/question/QuestionCreate";
+import QC from "./components/question/QC";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
           path="/ask/question"
           element={
             <WithPrivateRoute>
-              <QuestionCreate />
+              <QC />
             </WithPrivateRoute>
           }
         />
