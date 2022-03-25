@@ -1,14 +1,5 @@
-import React, {useState, useMemo } from "react";
-import { RichTextEditor } from '@mantine/rte';
+import Editor from './Editor';
 export default function QuestionCreate() {
-  const [value, onChange] = useState('');
-  const modules = useMemo(
-    () => ({
-      history: { delay: 2500, userOnly: true },
-      syntax: true,
-    }),
-    []
-  );
   return (
     <div className=" px-4 sm:px-6 lg:px-20 xl:px-24">
       <div className="space-y-8 divide-y divide-gray-200">
@@ -48,18 +39,7 @@ export default function QuestionCreate() {
                 Include all the information someone would need to answer your
                 question
               </span>
-              <RichTextEditor
-              controls={[
-                ['bold', 'italic', 'underline', 'strike'],
-                ['h1', 'h2', 'h3','h4'],
-                ['unorderedList', 'orderedList'],
-                ['link','image','codeBlock'],
-                ['sup', 'sub'],
-                ['alignLeft', 'alignCenter', 'alignRight'],
-              ]}
-                modules={modules}
-                value={value}
-                onChange={onChange} />
+              <Editor />
             </div>
 
             <div className="col-span-1 sm:col-start-2 sm:col-span-10">
