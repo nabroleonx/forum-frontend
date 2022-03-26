@@ -10,6 +10,7 @@ const initialState = {
   isAuthenticated: null,
   isLoading: false,
   question: null,
+  questionBody: null,
 };
 
 export default function (state = initialState, action) {
@@ -29,7 +30,7 @@ export default function (state = initialState, action) {
     case GET_BODY:
       return {
         ...state,
-        question: action.payload,
+        questionBody: action.payload,
       };
 
     default:

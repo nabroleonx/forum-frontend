@@ -7,11 +7,11 @@ export default function QuestionCreate() {
   const [title, setTitle] = useState(null);
   const [categories, setCategories] = useState(null);
   const [body, setBody] = useState(null);
-  const { question } = useSelector((state) => state.questions);
+  const { questionBody } = useSelector((state) => state.questions);
 
   useEffect(() => {
-    setBody(question);
-  }, [question]);
+    setBody(questionBody);
+  }, [questionBody]);
 
   const dispatch = useDispatch();
 
