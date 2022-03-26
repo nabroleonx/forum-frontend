@@ -7,6 +7,7 @@ import {
   GET_ERRORS,
   GET_BODY,
   UPDATE_QUESTION,
+  GET_QUESTIONS
 } from "./types";
 
 export const get_body = (body) => (dispatch) => {
@@ -18,52 +19,70 @@ export const get_body = (body) => (dispatch) => {
 
 export const createQuestion =
   ({ title, categories, body }) =>
-  (dispatch, getState) => {
-    const data = JSON.stringify({
-      title: title,
-      categories: categories,
-      body: body,
-    });
-
-    axiosInstance
-      .post("qa/question/create/", data, tokenConfig(getState))
-      .then((res) => {
-        dispatch({
-          type: CREATE_QUESTION_SUCCESS,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        dispatch({
-          type: CREATE_QUESTION_FAIL,
-        });
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response,
-        });
+    (dispatch, getState) => {
+      const data = JSON.stringify({
+        title: title,
+        categories: categories,
+        body: body,
       });
-  };
+
+      axiosInstance
+        .post("qa/question/create/", data, tokenConfig(getState))
+        .then((res) => {
+          dispatch({
+            type: CREATE_QUESTION_SUCCESS,
+            payload: res.data,
+          });
+        })
+        .catch((err) => {
+          dispatch({
+            type: CREATE_QUESTION_FAIL,
+          });
+          dispatch({
+            type: GET_ERRORS,
+            payload: err.response,
+          });
+        });
+    };
 
 export const updateQuestion =
   ({ id, title, categories, body }) =>
-  (dispatch, getState) => {
-    const data = JSON.stringify({
-      title: title,
-      categories: categories,
-      body: body,
-    });
-    axiosInstance
-      .patch(`/qa/question/${id}/`, data, tokenConfig(getState))
-      .then((res) => {
-        dispatch({
-          type: UPDATE_QUESTION,
-          payload: res.data,
+    (dispatch, getState) => {
+      const data = JSON.stringify({
+        title: title,
+        categories: categories,
+        body: body,
+      });
+      axiosInstance
+        .patch(`/qa/question/${id}/`, data, tokenConfig(getState))
+        .then((res) => {
+          dispatch({
+            type: UPDATE_QUESTION,
+            payload: res.data,
+          });
+        })
+        .catch((err) => {
+          dispatch({
+            type: GET_ERRORS,
+            payload: err.response,
+          });
         });
+    };
+
+export const getQuestions = ({}) =>
+  (dispatch,getState) => {
+    axiosInstance
+      .get('/qa/question/list/', tokenConfig(getState))
+      .then(res => {
+        dispatch({
+          type: GET_QUESTIONS,
+          payload: res.data,
+        })
       })
-      .catch((err) => {
+      .catch(err => {
         dispatch({
           type: GET_ERRORS,
           payload: err.response,
-        });
-      });
-  };
+        })
+      })
+  }

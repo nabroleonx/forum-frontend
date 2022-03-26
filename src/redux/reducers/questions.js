@@ -4,10 +4,12 @@ import {
   CREATE_QUESTION_SUCCESS,
   GET_BODY,
   UPDATE_QUESTION,
+  GET_QUESTIONS
 } from "../actions/types";
 
 const initialState = {
   isLoading: false,
+  questions:null,
   question: null,
   questionBody: null,
 };
@@ -37,7 +39,11 @@ export default function (state = initialState, action) {
         ...state,
         isLoading: false,
       };
-
+    case GET_QUESTIONS:
+      return{
+        ...state,
+        questions:action.payload
+      }
     default:
       return state;
   }
