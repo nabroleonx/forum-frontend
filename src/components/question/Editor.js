@@ -2,8 +2,9 @@ import React, { useState, useMemo, useEffect } from "react";
 import { RichTextEditor } from "@mantine/rte";
 import { useDispatch } from "react-redux";
 import { get_body } from "../../redux/actions/questions";
-export default function Editor() {
-  const [value, onChange] = useState("");
+
+export default function Editor(props) {
+  const [value, onChange] = useState(props.editMode && props.questionBody);
 
   const dispatch = useDispatch();
 

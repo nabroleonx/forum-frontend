@@ -3,11 +3,10 @@ import {
   CREATE_QUESTION_FAIL,
   CREATE_QUESTION_SUCCESS,
   GET_BODY,
+  UPDATE_QUESTION,
 } from "../actions/types";
 
 const initialState = {
-  token: JSON.parse(localStorage.getItem("forum")),
-  isAuthenticated: null,
   isLoading: false,
   question: null,
   questionBody: null,
@@ -31,6 +30,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         questionBody: action.payload,
+      };
+
+    case UPDATE_QUESTION:
+      return {
+        ...state,
+        isLoading: false,
       };
 
     default:
