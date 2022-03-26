@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   isLoading: false,
-  questions:null,
+  questions:[],
   question: null,
   questionBody: null,
 };
