@@ -52,7 +52,9 @@ export default function QuestionForm(props) {
                       placeholder="e.g. How can I find the eigenvector for 3x3 matrix?"
                       className="flex-1 border px-3 py-2 focus:outline-none placeholder:text-xs placeholder:font-light focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-md sm:text-sm border-gray-300"
                       onChange={(e) => setTitle(e.target.value)}
-                      defaultValue={props.editMode ? props.title : null}
+                      defaultValue={
+                        props.editMode ? props.question[0].title : null
+                      }
                     />
                   </div>
                 </div>
@@ -68,10 +70,14 @@ export default function QuestionForm(props) {
                     Include all the information someone would need to answer
                     your question
                   </span>
-                  <Editor
-                    editMode={props.editMode}
-                    questionBody={props.questionBody}
-                  />
+                  {props.editMode ? (
+                    <Editor
+                      editMode={props.editMode}
+                      questionBody={props.question[0].body}
+                    />
+                  ) : (
+                    <Editor editMode={props.editMode} questionBody={null} />
+                  )}
                 </div>
 
                 <div className="col-span-1 sm:col-start-2 sm:col-span-10">
@@ -93,7 +99,13 @@ export default function QuestionForm(props) {
                       placeholder="e.g. ( Java - Mechanics - Drawing )"
                       className="flex-1 border px-3 py-2 focus:outline-none placeholder:text-xs placeholder:font-light focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-md sm:text-sm border-gray-300"
                       onChange={(e) => handleCategory(e.target.value)}
-                      defaultValue={props.editMode ? props.categories : null}
+                      defaultValue={
+                        props.editMode
+                          ? props.question[0].categories
+                              .map((cat) => cat.name)
+                              .join(" - ")
+                          : null
+                      }
                     />
                   </div>
                 </div>

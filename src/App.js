@@ -42,7 +42,7 @@ function App() {
 
         <Route
           exact
-          path="/question/:id/edit"
+          path="/main/question/:id/edit"
           element={
             <WithPrivateRoute>
               <QuestionUpdate />
