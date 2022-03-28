@@ -8,6 +8,8 @@ import Main from "./components/layouts/Main";
 import ErrorMessage from "./components/layouts/ErrorMessage";
 import WithPrivateRoute from "./utils/WithPrivateRoute";
 import QuestionCreate from "./components/question/QuestionCreate";
+import QuestionUpdate from "./components/question/QuestionUpdate";
+import QuestionList from "./components/question/QuestionList";
 
 function App() {
   return (
@@ -26,14 +28,26 @@ function App() {
               <Main />
             </WithPrivateRoute>
           }
-        />
-
+        >
+          <Route index element={<QuestionList />} />
+          <Route path="questions" element={<QuestionList />} />
+          <Route path="questions" element={<QuestionList />} />
+        </Route>
         <Route
           exact
           path="/ask/question"
           element={
             <WithPrivateRoute>
               <QuestionCreate />
+            </WithPrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/question/:id/edit"
+          element={
+            <WithPrivateRoute>
+              <QuestionUpdate />
             </WithPrivateRoute>
           }
         />
