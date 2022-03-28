@@ -29,7 +29,7 @@ function App() {
             </WithPrivateRoute>
           }
         >
-          <Route path="questions" element={<QuestionList />} />
+          <Route index element={<QuestionList />} />
           <Route path="questions" element={<QuestionList />} />
           <Route path="questions" element={<QuestionList />} />
         </Route>

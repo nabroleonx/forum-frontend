@@ -24,7 +24,7 @@ const topics = [
   { name: "Gaming", href: "#" },
 ];
 const tabs = [
-  { name: "Recent", to: "questions", current: true },
+  { name: "Recent", to: "", current: true },
   { name: "Most Liked", to: "questions", current: false },
   { name: "Most Answers", to: "questions", current: false },
 ];
