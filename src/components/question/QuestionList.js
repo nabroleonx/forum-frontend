@@ -155,19 +155,25 @@ export default function QuestionList() {
                     </Menu>
                   </div>
                 </div>
-                <Link to={`question/${question.id}/edit`}>
+                <Link to={`/question/${question.id}/edit`}>
                   <h2
                     id={"question-title-" + question.id}
-                    className="mt-4 text-xl capitalize font-medium text-gray-900"
+                    className="mt-4 text-xl capitalize font-base text-sky-700"
                   >
                     {question.title}
                   </h2>
                 </Link>
               </div>
-              <div
-                // className="mt-2 text-sm text-gray-700 space-y-4"
-                dangerouslySetInnerHTML={{ __html: question.body }}
-              />
+              <div>
+                {question.categories.map((category) => (
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-2 py-px mr-2 mt-4 border border-transparent text-xs font-light rounded text-blue-800 bg-sky-100 hover:bg-sky-200"
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
               <div className="mt-6 flex justify-between space-x-8">
                 <div className="flex space-x-6">
                   <span className="inline-flex items-center text-sm">

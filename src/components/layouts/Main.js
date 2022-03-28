@@ -5,9 +5,7 @@ import {
   TrendingUpIcon,
   UserGroupIcon,
 } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
-
-import QuestionList from "../question/QuestionList";
+import { Link, Outlet } from "react-router-dom";
 
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
@@ -26,9 +24,9 @@ const topics = [
   { name: "Gaming", href: "#" },
 ];
 const tabs = [
-  { name: "Recent", href: "#", current: true },
-  { name: "Most Liked", href: "#", current: false },
-  { name: "Most Answers", href: "#", current: false },
+  { name: "Recent", to: "questions", current: true },
+  { name: "Most Liked", to: "questions", current: false },
+  { name: "Most Answers", to: "questions", current: false },
 ];
 const whoToFollow = [
   {
@@ -141,9 +139,9 @@ export default function Main() {
                     aria-label="Tabs"
                   >
                     {tabs.map((tab, tabIdx) => (
-                      <a
+                      <Link
                         key={tab.name}
-                        href={tab.href}
+                        to={tab.to}
                         aria-current={tab.current ? "page" : undefined}
                         className={classNames(
                           tab.current
@@ -162,12 +160,12 @@ export default function Main() {
                             "absolute inset-x-0 bottom-0 h-0.5"
                           )}
                         />
-                      </a>
+                      </Link>
                     ))}
                   </nav>
                 </div>
               </div>
-              <QuestionList />
+              <Outlet />
             </main>
             <aside className="hidden xl:block xl:col-span-4">
               <div className="sticky top-4 space-y-4">
@@ -275,12 +273,12 @@ export default function Main() {
                         </ul>
                       </div>
                       <div className="mt-6">
-                        <a
-                          href="#"
+                        <Link
+                          to="/"
                           className="w-full block text-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
                         >
                           View all
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
