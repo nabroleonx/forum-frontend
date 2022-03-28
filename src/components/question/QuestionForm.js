@@ -76,7 +76,7 @@ export default function QuestionForm(props) {
                       questionBody={props.question[0].body}
                     />
                   ) : (
-                    <Editor editMode={props.editMode} questionBody={null} />
+                    <Editor editMode={props.editMode} />
                   )}
                 </div>
 
