@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { get_body } from "../../redux/actions/questions";
 
 export default function Editor(props) {
-  const [value, onChange] = useState(props.editMode && props.questionBody);
+  const [value, onChange] = useState(props.editMode && props.question[0].body);
 
   const dispatch = useDispatch();
 

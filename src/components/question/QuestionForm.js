@@ -4,8 +4,10 @@ import { useSelector } from "react-redux";
 import Editor from "./Editor";
 
 export default function QuestionForm(props) {
-  const [title, setTitle] = useState(null);
-  const [categories, setCategories] = useState(null);
+  const [title, setTitle] = useState(props.editMode && props.question[0].title);
+  const [categories, setCategories] = useState(
+    props.editMode && props.question[0].categories
+  );
   const [body, setBody] = useState(null);
 
   const { questionBody } = useSelector((state) => state.questions);
@@ -70,14 +72,7 @@ export default function QuestionForm(props) {
                     Include all the information someone would need to answer
                     your question
                   </span>
-                  {props.editMode ? (
-                    <Editor
-                      editMode={props.editMode}
-                      questionBody={props.question[0].body}
-                    />
-                  ) : (
-                    <Editor editMode={props.editMode} />
-                  )}
+                  <Editor editMode={props.editMode} question={props.question} />
                 </div>
 
                 <div className="col-span-1 sm:col-start-2 sm:col-span-10">
