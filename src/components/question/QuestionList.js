@@ -12,6 +12,7 @@ import {
   ShareIcon,
   StarIcon,
   ThumbUpIcon,
+  PencilIcon
 } from "@heroicons/react/solid";
 
 import { getQuestions } from "../../redux/actions/questions";
@@ -95,6 +96,25 @@ export default function QuestionList() {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
+                                  to={`/question/${question.id}/edit`}
+                                  className={classNames(
+                                    active
+                                      ? "bg-gray-100 text-gray-900"
+                                      : "text-gray-700",
+                                    "flex px-4 py-2 text-sm"
+                                  )}
+                                >
+                                  <PencilIcon
+                                    className="mr-3 h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                  <span>Edit</span>
+                                </Link>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
                                   to="/"
                                   className={classNames(
                                     active
@@ -155,7 +175,7 @@ export default function QuestionList() {
                     </Menu>
                   </div>
                 </div>
-                <Link to={`/question/${question.id}/edit`}>
+                <Link to={`/question/${question.id}/detail`}>
                   <h2
                     id={"question-title-" + question.id}
                     className="mt-4 text-xl capitalize font-base text-sky-700"
@@ -167,6 +187,7 @@ export default function QuestionList() {
               <div>
                 {question.categories.map((category) => (
                   <button
+                    key={question.id}
                     type="button"
                     className="inline-flex items-center px-2 py-px mr-2 mt-4 border border-transparent text-xs font-light rounded text-blue-800 bg-sky-100 hover:bg-sky-200"
                   >
@@ -202,6 +223,7 @@ export default function QuestionList() {
                   </span>
                   <span className="inline-flex items-center text-sm">
                     <button
+                      key={question.id}
                       type="button"
                       className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
                     >
