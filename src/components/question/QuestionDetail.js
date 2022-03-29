@@ -163,6 +163,7 @@ export default function QuestionDetail() {
                 </Link>
               </div>
               <div
+                id="question"
                 className="mt-2 text-sm text-gray-700 space-y-4"
                 dangerouslySetInnerHTML={{ __html: question.body }}
               />

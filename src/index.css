@@ -21,3 +21,66 @@
     @apply ml-5;
   }
 }
+
+#question blockquote {
+  margin-top: 0;
+  margin-left: 0;
+  margin-bottom: 12px;
+  padding-left: 16px;
+  color: #495057;
+  border-left: 4px solid #ced4da;
+}
+#question code {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+  line-height: 1.55;
+  border-radius: 4px;
+  color: #000;
+  background-color: rgba(248, 249, 250, 1);
+  font-size: 12px;
+  padding: 2px 5px;
+}
+#question pre{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+  line-height: 1.55;
+  border-radius: 4px;
+  color: #000;
+  background-color: rgba(248, 249, 250, 1);
+  font-size: 12px;
+  padding: 10px;
+  margin: 0;
+  overflow-x: auto;
+}
+#question a{
+  color: #1c7ed6;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+#question h1{
+  font-size: 34px;
+  margin-bottom: 15.6px;
+}
+#question h2{
+  font-size: 26px;
+  margin-bottom: 16.2px;
+}
+#question h3{
+  font-size: 22px;
+  margin-bottom: 16.8px;
+}
+#question h4{
+  font-size: 18px;
+  margin-bottom: 17.4px;
+}
+#question h1,h2,h3,h4{
+  font-weight: bold;
+}
+#question .ql-align-center{
+  text-align: center;
+}
+#question .ql-align-right{
+  text-align: right;
+}
