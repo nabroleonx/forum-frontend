@@ -13,12 +13,11 @@ export default function QuestionDelete({ modal, setModal }) {
   const { id } = useParams();
   const { isQuestionDeleted } = useSelector((state) => state.questions);
 
-  //   useEffect(() => {
-  //     if (isQuestionDeleted) {
-  //       console.log(isQuestionDeleted);
-  //       navigate("/main");
-  //     }
-  //   }, [isQuestionDeleted]);
+  useEffect(() => {
+    if (isQuestionDeleted) {
+      navigate("/main");
+    }
+  }, [isQuestionDeleted]);
 
   const handleLogoutClick = () => {
     dispatch(deleteQuestion(id));
