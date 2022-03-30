@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import DOMPurify from 'dompurify';
 import { Link, useParams } from "react-router-dom";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
@@ -12,6 +12,7 @@ import {
   ShareIcon,
   StarIcon,
   ThumbUpIcon,
+  PencilIcon
 } from "@heroicons/react/solid";
 
 
@@ -23,8 +24,8 @@ export default function QuestionDetail() {
   const { questions } = useSelector((state) => state.questions);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const newQuestion = questions.filter((question) => question.id === parseInt(id));
-
+  const newQuestion = questions.filter((question) => question.id === parseInt(id))
+  
   function formatDate(date) {
     return new Date(date).toLocaleDateString("en-US", {
       day: "numeric",
@@ -33,7 +34,7 @@ export default function QuestionDetail() {
     });
   }
 
-  
+
   return (
     <div className="mt-4">
       <h1 className="sr-only">Recent questions</h1>
@@ -90,6 +91,25 @@ export default function QuestionDetail() {
                       >
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <div className="py-1">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to={`/question/${question.id}/edit`}
+                                  className={classNames(
+                                    active
+                                      ? "bg-gray-100 text-gray-900"
+                                      : "text-gray-700",
+                                    "flex px-4 py-2 text-sm"
+                                  )}
+                                >
+                                  <PencilIcon
+                                    className="mr-3 h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                  <span>Edit</span>
+                                </Link>
+                              )}
+                            </Menu.Item>
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
@@ -165,7 +185,7 @@ export default function QuestionDetail() {
               <div
                 id="question"
                 className="mt-2 text-sm text-gray-700 space-y-4"
-                dangerouslySetInnerHTML={{ __html: question.body }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(newQuestion[0].body, { USE_PROFILES: { html: true } }) }}
               />
               <div>
                 {question.categories.map((category) => (

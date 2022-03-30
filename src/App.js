@@ -31,6 +31,8 @@ function App() {
           }
         >
           <Route index element={<QuestionList />} />
+          <Route path="questions" element={<QuestionList />} />
+          <Route path="questions" element={<QuestionList />} />
         </Route>
         <Route
           exact

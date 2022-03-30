@@ -12,7 +12,6 @@ import {
   ShareIcon,
   StarIcon,
   ThumbUpIcon,
-  PencilIcon
 } from "@heroicons/react/solid";
 
 import { getQuestions } from "../../redux/actions/questions";
@@ -93,25 +92,6 @@ export default function QuestionList() {
                       >
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <div className="py-1">
-                            <Menu.Item>
-                              {({ active }) => (
-                                <Link
-                                  to={`/question/${question.id}/edit`}
-                                  className={classNames(
-                                    active
-                                      ? "bg-gray-100 text-gray-900"
-                                      : "text-gray-700",
-                                    "flex px-4 py-2 text-sm"
-                                  )}
-                                >
-                                  <PencilIcon
-                                    className="mr-3 h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                  />
-                                  <span>Edit</span>
-                                </Link>
-                              )}
-                            </Menu.Item>
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
