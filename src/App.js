@@ -10,6 +10,7 @@ import WithPrivateRoute from "./utils/WithPrivateRoute";
 import QuestionCreate from "./components/question/QuestionCreate";
 import QuestionUpdate from "./components/question/QuestionUpdate";
 import QuestionList from "./components/question/QuestionList";
+import QuestionDetail from "./components/question/QuestionDetail";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           path="/main"
           element={
             <WithPrivateRoute>
-              <Main />
+              <Main hasTab={true} />
             </WithPrivateRoute>
           }
         >
@@ -51,6 +52,17 @@ function App() {
             </WithPrivateRoute>
           }
         />
+        <Route
+          exact
+          path="/question/:id/detail"
+          element={
+            <WithPrivateRoute>
+              <Main hasTab={false} />
+            </WithPrivateRoute>
+          }
+        >
+          <Route index element={<QuestionDetail />} />
+        </Route>
       </Routes>
     </Router>
   );

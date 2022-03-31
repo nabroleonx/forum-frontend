@@ -8,6 +8,7 @@ import {
   GET_BODY,
   UPDATE_QUESTION,
   GET_QUESTIONS,
+  DELETE_QUESTION,
 } from "./types";
 
 export const get_body = (body) => (dispatch) => {
@@ -87,3 +88,20 @@ export const getQuestions =
         });
       });
   };
+
+export const deleteQuestion = (id) => (dispatch, getState) => {
+  axiosInstance
+    .delete(`/qa/question/${id}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: DELETE_QUESTION,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response,
+      });
+    });
+};
