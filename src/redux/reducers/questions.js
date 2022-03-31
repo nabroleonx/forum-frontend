@@ -4,14 +4,16 @@ import {
   CREATE_QUESTION_SUCCESS,
   GET_BODY,
   UPDATE_QUESTION,
-  GET_QUESTIONS
+  GET_QUESTIONS,
+  DELETE_QUESTION,
 } from "../actions/types";
 
 const initialState = {
   isLoading: false,
-  questions:[],
+  questions: [],
   question: null,
   questionBody: null,
+  isQuestionDeleted: false,
 };
 
 export default function (state = initialState, action) {
@@ -40,10 +42,15 @@ export default function (state = initialState, action) {
         isLoading: false,
       };
     case GET_QUESTIONS:
-      return{
+      return {
         ...state,
-        questions:action.payload
-      }
+        questions: action.payload,
+      };
+    case DELETE_QUESTION:
+      return {
+        ...state,
+        isQuestionDeleted: true,
+      };
     default:
       return state;
   }
