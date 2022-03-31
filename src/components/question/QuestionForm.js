@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import Editor from "./Editor";
-import QuestionDelete from "./QuestionDelete";
 
 export default function QuestionForm(props) {
   const [title, setTitle] = useState(props.editMode && props.question[0].title);
@@ -10,8 +9,6 @@ export default function QuestionForm(props) {
     props.editMode && props.question[0].categories
   );
   const [body, setBody] = useState(null);
-  const [modal, setModal] = useState(false);
-
   const { questionBody } = useSelector((state) => state.questions);
 
   useEffect(() => {
@@ -37,12 +34,6 @@ export default function QuestionForm(props) {
             <form onSubmit={handleFormSubmit}>
               <div>
                 <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-12">
-                  <button
-                    className="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-                    onClick={() => setModal(true)}
-                  >
-                    Delete
-                  </button>
                   <div className="col-span-1 sm:col-start-2 sm:col-span-10">
                     <label
                       htmlFor="title"
@@ -130,7 +121,6 @@ export default function QuestionForm(props) {
           </div>
         </div>
       </div>
-      {modal && <QuestionDelete modal={modal} setModal={setModal} />}
     </>
   );
 }
