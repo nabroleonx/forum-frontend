@@ -26,7 +26,7 @@ function App() {
           path="/main"
           element={
             <WithPrivateRoute>
-              <Main />
+              <Main hasTab={true} />
             </WithPrivateRoute>
           }
         >
@@ -57,7 +57,7 @@ function App() {
           path="/question/:id/detail"
           element={
             <WithPrivateRoute>
-              <Main />
+              <Main hasTab={false} />
             </WithPrivateRoute>
           }
         >
