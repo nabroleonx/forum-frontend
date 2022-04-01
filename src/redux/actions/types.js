@@ -17,3 +17,5 @@ export const GET_BODY = "GET_BODY";
 export const UPDATE_QUESTION = "UPDATE_QUESTION";
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const DELETE_QUESTION = "DELETE_QUESTION";
+
+export const REDIRECT = "REDIRECT";

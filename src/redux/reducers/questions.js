@@ -6,10 +6,11 @@ import {
   UPDATE_QUESTION,
   GET_QUESTIONS,
   DELETE_QUESTION,
+  REDIRECT,
 } from "../actions/types";
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   questions: [],
   question: null,
   questionBody: null,
@@ -21,6 +22,7 @@ export default function (state = initialState, action) {
     case CREATE_QUESTION_SUCCESS:
       return {
         ...state,
+        isLoading: false,
         question: action.payload,
       };
 
@@ -51,6 +53,13 @@ export default function (state = initialState, action) {
         ...state,
         isQuestionDeleted: true,
       };
+
+    case REDIRECT:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     default:
       return state;
   }

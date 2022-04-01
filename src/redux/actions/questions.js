@@ -9,12 +9,20 @@ import {
   UPDATE_QUESTION,
   GET_QUESTIONS,
   DELETE_QUESTION,
+  REDIRECT,
 } from "./types";
 
 export const get_body = (body) => (dispatch) => {
   dispatch({
     type: GET_BODY,
     payload: body,
+  });
+};
+
+export const redirect = () => (dispatch) => {
+  dispatch({
+    type: REDIRECT,
+    payload: null,
   });
 };
 
