@@ -94,48 +94,50 @@ export default function QuestionLayout({ isDetailPage, questions }) {
                         >
                           <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <div className="py-1">
-                              {isDetailPage && user.id === question.author && (
-                                <>
-                                  <Menu.Item>
-                                    {({ active }) => (
-                                      <Link
-                                        to={`/question/${question.id}/edit`}
-                                        className={classNames(
-                                          active
-                                            ? "bg-gray-100 text-gray-900"
-                                            : "text-gray-700",
-                                          "flex px-4 py-2 text-sm"
-                                        )}
-                                      >
-                                        <PencilIcon
-                                          className="mr-3 h-5 w-5 text-gray-400"
-                                          aria-hidden="true"
-                                        />
-                                        <span>Edit</span>
-                                      </Link>
-                                    )}
-                                  </Menu.Item>
-                                  <Menu.Item>
-                                    {({ active }) => (
-                                      <span
-                                        className={classNames(
-                                          active
-                                            ? "bg-gray-100 text-gray-900"
-                                            : "text-gray-700",
-                                          "flex px-4 py-2 text-sm cursor-pointer"
-                                        )}
-                                        onClick={() => setModal(true)}
-                                      >
-                                        <TrashIcon
-                                          className="mr-3 h-5 w-5 text-gray-400"
-                                          aria-hidden="true"
-                                        />
-                                        <span>Delete</span>
-                                      </span>
-                                    )}
-                                  </Menu.Item>
-                                </>
-                              )}
+                              {isDetailPage &&
+                                user &&
+                                user.id === question.author && (
+                                  <>
+                                    <Menu.Item>
+                                      {({ active }) => (
+                                        <Link
+                                          to={`/question/${question.id}/edit`}
+                                          className={classNames(
+                                            active
+                                              ? "bg-gray-100 text-gray-900"
+                                              : "text-gray-700",
+                                            "flex px-4 py-2 text-sm"
+                                          )}
+                                        >
+                                          <PencilIcon
+                                            className="mr-3 h-5 w-5 text-gray-400"
+                                            aria-hidden="true"
+                                          />
+                                          <span>Edit</span>
+                                        </Link>
+                                      )}
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                      {({ active }) => (
+                                        <span
+                                          className={classNames(
+                                            active
+                                              ? "bg-gray-100 text-gray-900"
+                                              : "text-gray-700",
+                                            "flex px-4 py-2 text-sm cursor-pointer"
+                                          )}
+                                          onClick={() => setModal(true)}
+                                        >
+                                          <TrashIcon
+                                            className="mr-3 h-5 w-5 text-gray-400"
+                                            aria-hidden="true"
+                                          />
+                                          <span>Delete</span>
+                                        </span>
+                                      )}
+                                    </Menu.Item>
+                                  </>
+                                )}
                               <Menu.Item>
                                 {({ active }) => (
                                   <Link
