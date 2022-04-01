@@ -4,20 +4,21 @@ import { XIcon, TrashIcon } from "@heroicons/react/outline";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { deleteQuestion } from "../../redux/actions/questions";
+import { deleteQuestion, redirect } from "../../redux/actions/questions";
 
 export default function QuestionDelete({ modal, setModal }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const { isQuestionDeleted } = useSelector((state) => state.questions);
+  const { isLoading } = useSelector((state) => state.questions);
 
   useEffect(() => {
-    if (isQuestionDeleted) {
+    if (!isLoading) {
       navigate("/main");
+      dispatch(redirect());
     }
-  }, [isQuestionDeleted]);
+  }, [isLoading]);
 
   const handleDeleteClick = () => {
     dispatch(deleteQuestion(id));

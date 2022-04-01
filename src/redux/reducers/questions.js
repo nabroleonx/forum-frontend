@@ -14,7 +14,6 @@ const initialState = {
   questions: [],
   question: null,
   questionBody: null,
-  isQuestionDeleted: false,
 };
 
 export default function (state = initialState, action) {
@@ -51,7 +50,7 @@ export default function (state = initialState, action) {
     case DELETE_QUESTION:
       return {
         ...state,
-        isQuestionDeleted: true,
+        isLoading: false,
       };
 
     case REDIRECT:
