@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Fragment, useState } from "react";
+import { useSelector } from "react-redux";
 import DOMPurify from "dompurify";
 import { Menu, Transition } from "@headlessui/react";
 import {
@@ -23,6 +24,7 @@ function classNames(...classes) {
 
 export default function QuestionLayout({ isDetailPage, questions }) {
   const [modal, setModal] = useState(false);
+  const { user } = useSelector((state) => state.auth);
 
   function formatDate(date) {
     return new Date(date).toLocaleDateString("en-US", {
@@ -92,7 +94,7 @@ export default function QuestionLayout({ isDetailPage, questions }) {
                         >
                           <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <div className="py-1">
-                              {isDetailPage && (
+                              {isDetailPage && user.id === question.author && (
                                 <>
                                   <Menu.Item>
                                     {({ active }) => (
