@@ -45,6 +45,15 @@ axiosInstance.interceptors.response.use(
             JSON.parse(localStorage.getItem("forum")).access
           }`;
 
+          if (originalRequest.url === "user/logout/") {
+            const refreshToken = JSON.parse(
+              localStorage.getItem("forum")
+            ).refresh;
+            originalRequest.data = {
+              refresh: refreshToken,
+            };
+          }
+
           return axiosInstance(originalRequest);
         });
     }
