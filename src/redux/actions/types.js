@@ -19,3 +19,8 @@ export const GET_QUESTIONS = "GET_QUESTIONS";
 export const DELETE_QUESTION = "DELETE_QUESTION";
 
 export const REDIRECT = "REDIRECT";
+
+export const CREATE_ANSWER = "CREATE_ANSWER";
+export const UPDATE_ANSWER = "UPDATE_ANSWER";
+export const GET_ANSWERS = "GET_ANSWERS";
+export const DELETE_ANSWER = "DELETE_ANSWER";
