@@ -11,6 +11,9 @@ export default function ErrorMessage() {
     name: "Name",
     password: "Password",
     email: "Email",
+    title: "Title",
+    body: "Body",
+    categories: "Tags",
   });
 
   const dispatch = useDispatch();
