@@ -8,8 +8,10 @@ import {
   GET_BODY,
   UPDATE_QUESTION,
   GET_QUESTIONS,
+  GET_QUESTION,
   DELETE_QUESTION,
   REDIRECT,
+  
 } from "./types";
 
 export const get_body = (body) => (dispatch) => {
@@ -78,7 +80,26 @@ export const updateQuestion =
       });
   };
 
-export const getQuestions =
+export const getQuestion =
+  ({id}) =>
+  (dispatch, getState) => {
+    axiosInstance
+      .get(`/qa/question/${id}/`, tokenConfig(getState))
+      .then((res) => {
+        dispatch({
+          type: GET_QUESTION,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response,
+        });
+      });
+  };
+
+  export const getQuestions =
   ({}) =>
   (dispatch, getState) => {
     axiosInstance
@@ -95,7 +116,7 @@ export const getQuestions =
           payload: err.response,
         });
       });
-  };
+};
 
 export const deleteQuestion = (id) => (dispatch, getState) => {
   axiosInstance

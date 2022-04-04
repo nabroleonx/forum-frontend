@@ -222,7 +222,7 @@ export default function QuestionLayout({ isDetailPage, questions }) {
                   />
                 )}
                 <div>
-                  {question.categories.map((category) => (
+                  {question.categories && question.categories.map((category) => (
                     <button
                       key={question.id}
                       type="button"
