@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import QuestionLayout from "./QuestionLayout";
 import AnswerCreate from "../answer/AnswerCreate";
 import { useEffect } from "react";
-import { getQuestion } from "../../redux/actions/questions";
+import { getQuestion, redirect } from "../../redux/actions/questions";
 import AnswerLayout from "../answer/AnswerLayout";
 
 export default function QuestionDetail({ answerMode }) {
@@ -12,9 +12,17 @@ export default function QuestionDetail({ answerMode }) {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const { isLoading } = useSelector((state) => state.answers);
+
   useEffect(() => {
-    dispatch(getQuestion({ id }));
-  }, [dispatch]);
+    if (answerMode) {
+      dispatch(getQuestion({ id }));
+      if (!isLoading) {
+        window.location.reload();
+        dispatch(redirect());
+      }
+    }
+  }, [dispatch, isLoading]);
 
   if (question)
     return (
@@ -26,10 +34,12 @@ export default function QuestionDetail({ answerMode }) {
               {question.answer.length} answers
             </span>
             {<AnswerLayout answers={question.answer} />}
-            <span className="font-light text-gray-900 text-xl">
-              Write your answer
-            </span>
-            <AnswerCreate questionId={id} />
+            <div className="mt-6 border-t pt-3 border-gray-200">
+              <span className="font-light text-gray-900 text-xl">
+                Write your answer
+              </span>
+              <AnswerCreate questionId={id} />
+            </div>
           </div>
         )}
       </>

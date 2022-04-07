@@ -8,7 +8,7 @@ import { Extras } from "../layouts/QuestionAnswerLayout/Extras";
 
 export default function QuestionLayout({ isDetailPage, questions }) {
   const [modal, setModal] = useState(false);
-  
+
   return (
     <>
       <div className="mt-4">
@@ -30,7 +30,12 @@ export default function QuestionLayout({ isDetailPage, questions }) {
                       />
                     </div>
                     <AuthorDate content={question} />
-                    <MoreActions editLink={`/question/${question.id}/edit`} isDetailPage = {isDetailPage} content = {question} setModal = {setModal}/>
+                    <MoreActions
+                      editLink={`/question/${question.id}/edit`}
+                      isDetailPage={isDetailPage}
+                      content={question}
+                      setModal={setModal}
+                    />
                   </div>
                   <Link to={`/question/${question.id}/detail`}>
                     <h2
@@ -41,13 +46,11 @@ export default function QuestionLayout({ isDetailPage, questions }) {
                     </h2>
                   </Link>
                 </div>
-                {isDetailPage && (
-                  <Detail content={question} />
-                )}
+                {isDetailPage && <Detail content={question} />}
                 <div>
-                  {question.categories.map((category) => (
+                  {question.categories.map((category, idx) => (
                     <button
-                      key={question.id}
+                      key={idx}
                       type="button"
                       className="inline-flex items-center px-2 py-px mr-2 mt-4 border border-transparent text-xs font-light rounded text-blue-800 bg-sky-100 hover:bg-sky-200"
                     >
@@ -55,7 +58,7 @@ export default function QuestionLayout({ isDetailPage, questions }) {
                     </button>
                   ))}
                 </div>
-                <Extras content = {question} />
+                <Extras content={question} />
               </article>
             </li>
           ))}

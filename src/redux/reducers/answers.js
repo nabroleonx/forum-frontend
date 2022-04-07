@@ -4,6 +4,7 @@ import {
   CREATE_ANSWER,
   UPDATE_ANSWER,
   DELETE_ANSWER,
+  REDIRECT,
 } from "../actions/types";
 
 const initialState = {
@@ -35,6 +36,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoading: false,
+      };
+
+    case REDIRECT:
+      return {
+        ...state,
+        isLoading: true,
       };
 
     default:

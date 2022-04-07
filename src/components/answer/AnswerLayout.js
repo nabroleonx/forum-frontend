@@ -7,6 +7,7 @@ import AnswerDelete from "./AnswerDelete";
 
 export default function AnswerLayout({ answers }) {
   const [modal, setModal] = useState(false);
+  const [id, setId] = useState();
 
   return (
     <>
@@ -34,6 +35,7 @@ export default function AnswerLayout({ answers }) {
                       isDetailPage={true}
                       content={answer}
                       setModal={setModal}
+                      setId={setId}
                     />
                   </div>
                 </div>
@@ -44,7 +46,7 @@ export default function AnswerLayout({ answers }) {
           ))}
         </ul>
       </div>
-      {modal && <AnswerDelete modal={modal} setModal={setModal} />}
+      {modal && <AnswerDelete modal={modal} setModal={setModal} id={id} />}
     </>
   );
 }

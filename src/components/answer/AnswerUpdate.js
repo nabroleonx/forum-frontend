@@ -1,12 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Editor from "./Editor";
 import { updateAnswer } from "../../redux/actions/answers";
+import { redirect } from "../../redux/actions/questions";
 import QuestionDetail from "../question/QuestionDetail";
 
 export default function AnswerUpdate() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -14,6 +17,15 @@ export default function AnswerUpdate() {
   const questionId = question.id;
 
   const answer = question.answer.filter((answer) => answer.id === parseInt(id));
+
+  const { isLoading } = useSelector((state) => state.answers);
+
+  useEffect(() => {
+    if (!isLoading) {
+      navigate(`/question/${questionId}/detail`);
+      dispatch(redirect());
+    }
+  }, [isLoading]);
 
   const handleFormSubmit = ({ body }) => {
     dispatch(updateAnswer({ id, questionId, body }));

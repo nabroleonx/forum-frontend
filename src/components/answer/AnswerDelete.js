@@ -1,27 +1,12 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon, TrashIcon } from "@heroicons/react/outline";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { deleteAnswer } from "../../redux/actions/answers";
-import { redirect } from "../../redux/actions/questions";
 
-export default function AnswerDelete({ modal, setModal }) {
+export default function AnswerDelete({ modal, setModal, id }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const { id } = useParams();
-  const { isLoading } = useSelector((state) => state.answers);
-  const { question } = useSelector((state) => state.questions);
-  const questionId = question.id;
-
-  useEffect(() => {
-    if (!isLoading) {
-      navigate(`/question/${questionId}/detail`);
-      dispatch(redirect());
-    }
-  }, [isLoading]);
 
   const handleDeleteClick = () => {
     dispatch(deleteAnswer(id));
