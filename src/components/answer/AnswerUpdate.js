@@ -2,25 +2,33 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Editor from "./Editor";
-import { updateQuestion } from "../../redux/actions/answers";
+import { updateAnswer } from "../../redux/actions/answers";
+import QuestionDetail from "../question/QuestionDetail";
 
 export default function AnswerUpdate() {
   const dispatch = useDispatch();
 
-  const { questionId } = useParams();
-  const { answers } = useSelector((state) => state.answers);
-  const answer = answers.filter((answer) => answer.id === parseInt(questionId));
+  const { id } = useParams();
+
+  const { question } = useSelector((state) => state.questions);
+  const questionId = question.id;
+
+  const answer = question.answer.filter((answer) => answer.id === parseInt(id));
 
   const handleFormSubmit = ({ body }) => {
-    dispatch(updateQuestion({ questionId, body }));
+    dispatch(updateAnswer({ id, questionId, body }));
   };
 
   return (
-    <Editor
-      editMode={true}
-      handleFormSubmit={handleFormSubmit}
-      answer={answer}
-      buttonLabel="Update Answer"
-    />
+    <>
+      <QuestionDetail answerMode={false} />
+      <div className="mt-6 border-t border-gray-200 p-3"></div>
+      <Editor
+        editMode={true}
+        handleFormSubmit={handleFormSubmit}
+        answer={answer}
+        buttonLabel="Update Answer"
+      />
+    </>
   );
 }

@@ -1,7 +1,13 @@
 import axiosInstance from "../../utils/axios";
 import { tokenConfig } from "./auth";
 
-import { GET_ERRORS, GET_BODY, CREATE_ANSWER, UPDATE_ANSWER } from "./types";
+import {
+  GET_ERRORS,
+  GET_BODY,
+  CREATE_ANSWER,
+  UPDATE_ANSWER,
+  DELETE_ANSWER,
+} from "./types";
 
 export const get_body = (body) => (dispatch) => {
   dispatch({
@@ -56,3 +62,20 @@ export const updateAnswer =
         });
       });
   };
+
+export const deleteAnswer = (id) => (dispatch, getState) => {
+  axiosInstance
+    .delete(`/qa/answer/${id}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: DELETE_ANSWER,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response,
+      });
+    });
+};

@@ -13,7 +13,7 @@ export default function AnswerCreate({ questionId }) {
   return (
     <div className="mt-3">
       <Editor
-        editMode={true}
+        editMode={false}
         handleFormSubmit={handleFormSubmit}
         buttonLabel="Post Answer"
       />

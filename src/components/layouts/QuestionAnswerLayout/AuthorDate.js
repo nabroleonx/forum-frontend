@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const AuthorDate = (content) => {
+export const AuthorDate = ({ content }) => {
   function formatDate(date) {
     return new Date(date).toLocaleDateString("en-US", {
       day: "numeric",
@@ -23,5 +23,5 @@ export const AuthorDate = (content) => {
         </Link>
       </p>
     </div>
-  )
-}
+  );
+};

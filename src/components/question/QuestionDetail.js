@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { getQuestion } from "../../redux/actions/questions";
 import AnswerLayout from "../answer/AnswerLayout";
 
-export default function QuestionDetail() {
+export default function QuestionDetail({ answerMode }) {
   const { question } = useSelector((state) => state.questions);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -20,22 +20,20 @@ export default function QuestionDetail() {
     return (
       <>
         <QuestionLayout isDetailPage={true} questions={[question]} />
-        <div className="mt-6 border-t pt-3 border-gray-200">
-          <span className="font-light text-gray-900 text-xl">
-            {question.answer.length} answers
-          </span>
-          <AnswerLayout answers={question.answer} />
-          <span className="font-light text-gray-900 text-xl">
-            Write your answer
-          </span>
-          <AnswerCreate questionId={id} />
-        </div>
+        {answerMode && (
+          <div className="mt-6 border-t pt-3 border-gray-200">
+            <span className="font-light text-gray-900 text-xl">
+              {question.answer.length} answers
+            </span>
+            {<AnswerLayout answers={question.answer} />}
+            <span className="font-light text-gray-900 text-xl">
+              Write your answer
+            </span>
+            <AnswerCreate questionId={id} />
+          </div>
+        )}
       </>
     );
 
-  return (
-    <>
-
-    </>
-  )
+  return <></>;
 }

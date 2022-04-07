@@ -1,5 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export*/
-import { GET_BODY, CREATE_ANSWER, UPDATE_ANSWER } from "../actions/types";
+import {
+  GET_BODY,
+  CREATE_ANSWER,
+  UPDATE_ANSWER,
+  DELETE_ANSWER,
+} from "../actions/types";
 
 const initialState = {
   isLoading: true,
@@ -22,6 +27,11 @@ export default function (state = initialState, action) {
         answerBody: action.payload,
       };
     case UPDATE_ANSWER:
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case DELETE_ANSWER:
       return {
         ...state,
         isLoading: false,

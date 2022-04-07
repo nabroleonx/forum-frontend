@@ -3,6 +3,7 @@ import { AuthorDate } from "../layouts/QuestionAnswerLayout/AuthorDate";
 import { MoreActions } from "../layouts/QuestionAnswerLayout/MoreActions";
 import { Detail } from "../layouts/QuestionAnswerLayout/Detail";
 import { Extras } from "../layouts/QuestionAnswerLayout/Extras";
+import AnswerDelete from "./AnswerDelete";
 
 export default function AnswerLayout({ answers }) {
   const [modal, setModal] = useState(false);
@@ -28,7 +29,12 @@ export default function AnswerLayout({ answers }) {
                       />
                     </div>
                     <AuthorDate content={answer} />
-                    <MoreActions editLink={`/answer/${answer.id}/edit`} isDetailPage={true} content={answer} setModal={setModal} />
+                    <MoreActions
+                      editLink={`/answer/${answer.id}/edit`}
+                      isDetailPage={true}
+                      content={answer}
+                      setModal={setModal}
+                    />
                   </div>
                 </div>
                 <Detail content={answer} />
@@ -38,6 +44,7 @@ export default function AnswerLayout({ answers }) {
           ))}
         </ul>
       </div>
+      {modal && <AnswerDelete modal={modal} setModal={setModal} />}
     </>
   );
 }
