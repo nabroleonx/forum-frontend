@@ -11,6 +11,7 @@ import QuestionCreate from "./components/question/QuestionCreate";
 import QuestionUpdate from "./components/question/QuestionUpdate";
 import QuestionList from "./components/question/QuestionList";
 import QuestionDetail from "./components/question/QuestionDetail";
+import AnswerUpdate from "./components/answer/AnswerUpdate";
 
 function App() {
   return (
@@ -61,7 +62,18 @@ function App() {
             </WithPrivateRoute>
           }
         >
-          <Route index element={<QuestionDetail />} />
+          <Route index element={<QuestionDetail answerMode={true} />} />
+        </Route>
+        <Route
+          exact
+          path="/answer/:id/edit"
+          element={
+            <WithPrivateRoute>
+              <Main hasTab={false} />
+            </WithPrivateRoute>
+          }
+        >
+          <Route index element={<AnswerUpdate />} />
         </Route>
       </Routes>
     </Router>

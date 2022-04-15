@@ -5,6 +5,7 @@ import {
   GET_BODY,
   UPDATE_QUESTION,
   GET_QUESTIONS,
+  GET_QUESTION,
   DELETE_QUESTION,
   REDIRECT,
 } from "../actions/types";
@@ -47,6 +48,11 @@ export default function (state = initialState, action) {
         ...state,
         questions: action.payload,
       };
+    case GET_QUESTION:
+      return {
+        ...state,
+        question:action.payload,
+      }
     case DELETE_QUESTION:
       return {
         ...state,
